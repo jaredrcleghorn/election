@@ -24,3 +24,11 @@ def solidity_storage(accounts, SolidityStorage):
     Yield a `Contract` object for the SolidityStorage contract.
     """
     yield accounts[0].deploy(SolidityStorage)
+
+
+@pytest.fixture(scope='module')
+def election(accounts, Election):
+    """
+    Yield a `Contract` object for the Election contract.
+    """
+    yield accounts[0].deploy(Election)
