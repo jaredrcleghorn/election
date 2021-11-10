@@ -10,7 +10,7 @@ export const getWeb3 = async () => {
   } else if (window.web3) {
     web3 = window.web3
   } else {
-    const provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545')
+    const provider = new Web3.providers.WebsocketProvider('ws://127.0.0.1:8545')
     web3 = new Web3(provider)
   }
 
