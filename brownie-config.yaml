@@ -14,7 +14,7 @@ networks:
     cmd_settings:
       mnemonic: brownie
       default_balance: 100000000000000000000
-      unlock: <ACCOUNT ADDRESS HERE> # optionally add saved brownie account to Ganache
+      unlock: ${METAMASK}  # optionally add saved brownie account to Ganache
       # (requires explicit transfer of eth to accounts[-1]) 
 
     update_interval: 60
