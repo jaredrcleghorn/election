@@ -1,0 +1,30 @@
+name: Deploy UI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  deploy-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.4.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.4.1
+      - name: Install dependencies
+        run: |
+          cd client
+          npm i
+      - name: Build
+        run: |
+          cd client
+          npm run build
+      - name: Deploy
+        run: |
+          mkdir ~/.ssh
+          echo ${{ secrets.DEPLOY_UI_KNOWN_HOSTS }} > ~/.ssh/known_hosts
+          echo '${{ secrets.DEPLOY_UI_OPENSSH_PRIVATE_KEY }}' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          scp -r client/build github@74.207.236.245:~
+          ssh github@74.207.236.245 'rm -rf /var/www/election/* && mv build/* /var/www/election && rm -r build'

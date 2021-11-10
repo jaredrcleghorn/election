@@ -10,6 +10,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "rimble-ui": "^0.14.0",
+    "styled-components": "^5.3.3",
     "web3": "^1.2.8"
   },
   "scripts": {
